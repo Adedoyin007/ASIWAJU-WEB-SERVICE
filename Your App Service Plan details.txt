@@ -1,0 +1,26 @@
+Your App Service Plan details
+
+Property	Value
+App Service Plan Name	ASP-testwebapprgeastus-8ae9
+Hosting Plan	Azure App Service Plan
+Operating System	Linux
+Pricing Tier	Free (F1)
+Region	France Central
+Instance Count	1
+CPU	Shared compute (Free tier)
+Memory	Approximately 1 GB RAM
+Scale Out	Not available on Free tier
+
+App Service Plan Configuration
+
+An Azure App Service Plan named ASP-testwebapprgeastus-8ae9 was created to host the web application. The hosting environment was configured in the France Central region using the Linux operating system. The selected pricing tier was Free (F1), which provides shared compute resources suitable for development, testing, and educational projects.
+
+The App Service Plan uses:
+
+* Pricing Tier: Free (F1)
+* Operating System: Linux
+* Region: France Central
+* Instance Count: 1
+* Compute Resources: Shared CPU resources and approximately 1 GB of memory
+
+The Free tier was selected because it incurs no cost and provides sufficient resources for deploying and testing a basic static web application.
