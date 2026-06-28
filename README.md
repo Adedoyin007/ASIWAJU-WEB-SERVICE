@@ -5,138 +5,170 @@ Azure App Service Web App Deployment
 
 Overview
 
-This project demonstrates the deployment of a web application using Microsoft Azure App Service (PaaS). The goal is to showcase cloud deployment, CI/CD integration, and application configuration.
+This project demonstrates the deployment of a web application using Microsoft Azure App Service (Platform as a Service - PaaS). It showcases cloud deployment, CI/CD automation, application configuration, and basic scalability planning.
 
-The application is deployed using GitHub Actions and hosted on Azure App Service.
+The application is deployed via GitHub Actions and hosted on Azure App Service, eliminating the need to manage underlying infrastructure.
 
 ⸻
 
 Architecture
 
-* Platform: Azure App Service (PaaS)
-* CI/CD: GitHub Actions
-* Runtime: PHP 8.5
+* Cloud Platform: Azure App Service (PaaS)
+* CI/CD Tool: GitHub Actions
+* Runtime Environment: PHP 8.5
+* Operating System: Linux
 * Region: France Central
 * Pricing Tier: F1 (Free Tier)
 
 ⸻
 
-Deployment Steps
+Deployment Process
 
-1. Create App Service Plan
+1. App Service Plan
 
-* Tier: F1 (Free)
-* Region: France Central
+* Created using the F1 (Free Tier)
+* Selected France Central region
+* Suitable for development and testing purposes
 
-2. Create Web App
+2. Web App Creation
 
-* Runtime: PHP 8.5
-* OS: Linux
-* Unique app name configured
+* Configured with PHP 8.5 runtime
+* Deployed on Linux OS
+* Unique app name assigned
 
-3. Deploy Application
+3. Application Deployment
 
-* Code pushed to GitHub repository
-* GitHub Actions used for deployment
-* Application successfully deployed to Azure
+* Source code hosted on GitHub
+* Automatic deployment configured via GitHub Actions
+* Successful deployment verified through browser access
 
 ⸻
 
 CI/CD Pipeline (GitHub Actions)
 
-Workflow:
+Workflow Summary
 
 * Trigger: Push to main branch
-* Steps:
-    * Checkout repository
-    * Deploy to Azure Web App
+* Process:
+    1. Checkout repository code
+    2. Deploy application to Azure Web App
 
-Benefits:
+GitHub Actions Workflow
 
-* Automated deployment
-* Reduced manual errors
-* Continuous delivery
+name: Deploy to Azure Web App
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: asiwaju-app
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
+
+Explanation of Steps
+
+* Checkout code: Retrieves repository files
+* Deploy step: Publishes application to Azure using secure credentials
 
 ⸻
 
 Application Configuration
 
-Application settings configured in Azure:
+Application settings were configured in Azure to separate environment-specific values from the source code.
+
+Configured Variables
 
 * ENVIRONMENT = production
 * WEBSITE_RUN_FROM_PACKAGE = 1
 * APP_NAME = asiwaju-app
 
-Purpose:
+Purpose
 
-* Separate config from code
-* Enable flexibility across environments
-* Improve maintainability
+* Improves maintainability
+* Supports environment-based behavior
+* Enhances security by avoiding hardcoded values
 
 ⸻
 
 Monitoring and Diagnostics
 
-Tools Used:
+Tools Used
 
-* Log Stream for real-time logs
-* Application Insights (optional)
+* Log Stream: Real-time application logs
+* Application Insights (optional): Performance monitoring and telemetry
 
-Benefits:
+Benefits
 
-* Faster debugging
-* Performance monitoring
+* Enables quick debugging
+* Provides visibility into application behavior
 
 ⸻
 
 Scaling Strategy
 
-Current Tier:
+Current Setup
 
-* F1 (Free Tier)
-    * Limited resources
-    * No autoscaling
+* Tier: F1 (Free Tier)
+* Limitations:
+    * Shared infrastructure
+    * No autoscaling support
 
-Future Plan:
+Future Improvements
 
-* Scale up to B1 for better performance
-* Scale out with multiple instances if needed
+* Scale Up: Upgrade to B1 for dedicated resources
+* Scale Out: Add multiple instances under higher load
+
+Example Plan
+
+* Low traffic → F1
+* Medium traffic → B1 (single instance)
+* High traffic → Premium tier with autoscaling
 
 ⸻
 
 Live Application
 
-🔗 URL:
+URL:
 https://asiwaju-app-asf4e7a2a9wb0aq.francecentral-01.azurewebsites.net
 
-The application successfully displays a custom HTML page (“I really love coffee”), confirming successful deployment instead of the default Azure page.
+The application successfully displays a custom HTML page (“I really love coffee”), confirming that deployment is working correctly and not showing the default Azure placeholder page.
 
 ⸻
 
 Challenges and Solutions
 
-Issue: Default Azure Page
+Default Azure Page Displayed
 
-* Cause: Incorrect file placement
-* Fix: Ensured index.html is in root directory
+* Cause: Application files not in correct root directory
+* Solution: Ensured index.html is deployed to the root (wwwroot)
 
-Issue: Deployment Errors
+Deployment Failures
 
-* Cause: CI/CD misconfiguration
-* Fix: Corrected GitHub Actions workflow
+* Cause: Incorrect GitHub Actions configuration
+* Solution: Fixed workflow file and verified successful pipeline execution
 
 ⸻
 
 Key Learnings
 
-* Cloud deployment using Azure App Service
-* CI/CD with GitHub Actions
-* Environment-based configuration
-* Monitoring and debugging in Azure
-* Basic scaling strategies
+* Understanding of PaaS vs traditional hosting
+* Practical experience with Azure App Service
+* CI/CD pipeline implementation using GitHub Actions
+* Use of environment variables for configuration
+* Basics of monitoring and scaling cloud applications
 
 ⸻
 
 Conclusion
 
-This project demonstrates a working cloud deployment using Azure App Service with CI/CD integration. It follows best practices for configuration, deployment, and scalability.
+This project demonstrates a complete cloud deployment workflow using Azure App Service and GitHub Actions. It follows best practices for automation, configuration management, and scalability planning.
+
+The deployed solution is functional, maintainable, and aligned with modern DevOps principles.
